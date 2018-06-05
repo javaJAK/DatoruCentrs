@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.datorucentrs.database.savienojums.ConnectDB;
+import lv.datorucentrs.database.savienojums.Connect;
 import lv.datorucentrs.dati.Amats;
 import lv.datorucentrs.dati.Datortehnika;
 
-public class DatorTehnikaDB {
+public class DatortehnikaDB {
 
 	public PreparedStatement ps;
 
@@ -19,7 +19,7 @@ public class DatorTehnikaDB {
 
 		String sql = "INSERT INTO datortehnika(nosaukums) VALUES(?)";
 
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ps.executeUpdate();
 		insertOK = true;
@@ -29,7 +29,7 @@ public class DatorTehnikaDB {
 	public boolean updateDatortehnika(String nosaukums, String jnosaukums) throws SQLException {
 		boolean updateOK = false;
 		String sql = "UPDATE datortehnika set nosaukums = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, jnosaukums);
 		ps.setString(2, nosaukums);
 		ps.executeUpdate();
@@ -40,7 +40,7 @@ public class DatorTehnikaDB {
 	public boolean deleteDatortehnika(String nosaukums) throws SQLException {
 		boolean deleteOK = false;
 		String sql = "DELETE FROM datortehnika WHERE nosaukums = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ps.executeUpdate();
 		deleteOK = true;
@@ -50,7 +50,7 @@ public class DatorTehnikaDB {
 	public Datortehnika getDatortehnika(String nosaukums) throws SQLException {
 		Datortehnika datortehnika = new Datortehnika();
 		String sql = "SELECT nosaukums FROM datortehnika WHERE nosaukums = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -63,7 +63,7 @@ public class DatorTehnikaDB {
 	public Amats getAmatsByID(int id) throws SQLException {
 		Amats amats = new Amats();
 		String sql = "SELECT id FROM amati WHERE id = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -76,7 +76,7 @@ public class DatorTehnikaDB {
 	public int getAmatsID(String nosaukums) throws SQLException {
 		int amatsID = -1;
 		String sql = "SELECT id FROM amati WHERE nosaukums = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -90,7 +90,7 @@ public class DatorTehnikaDB {
 		Amats amats;
 		List<Amats> amati = new ArrayList<Amats>();
 		String sql = "SELECT nosaukums FROM amati = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			amats = new Amats(rs.getString(1));

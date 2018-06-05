@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import lv.datorucentrs.database.savienojums.ConnectDB;
+import lv.datorucentrs.database.savienojums.Connect;
 import lv.datorucentrs.dati.Amats;
 
 public class PersonaDB {
@@ -28,7 +28,7 @@ public class PersonaDB {
 		if (amatsID != -1) {
 			String sql = "SELECT p.vards, p.uzvards, p.talrunis, a.nosaukums" + "FROM persona p, amati a"
 					+ "WHERE p.amats id = a.id AND p.vards = ? AND p.uzvards =  AND p.amats id = ?;";
-			ps = ConnectDB.connection.prepareStatement(sql);
+			ps = Connect.connection.prepareStatement(sql);
 			ps.setString(1, vards);
 			ps.setString(2, uzvards);
 			ps.setInt(3, amatsID);
@@ -50,7 +50,7 @@ public class PersonaDB {
 
 		String sql = "INSERT INTO amati(nosaukums) VALUES(?)";
 
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, vards);
 		ps.setString(2, uzvards);
 		ps.setString(3, amats);
@@ -62,7 +62,7 @@ public class PersonaDB {
 	public boolean updatePersona(String vards, String uzvards, String amats) throws SQLException {
 		boolean updateOK = false;
 		String sql = "UPDATE amati set nosaukums = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, vards);
 		ps.setString(2, uzvards);
 		ps.setString(3, amats);
@@ -74,7 +74,7 @@ public class PersonaDB {
 	public boolean deletePesrona(String vards, String uzvards, String amats) throws SQLException {
 		boolean deleteOK = false;
 		String sql = "DELETE FROM amati WHERE nosaukums = ?";
-		ps = ConnectDB.connection.prepareStatement(sql);
+		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, vards);
 		ps.setString(2, uzvards);
 		ps.setString(3, amats);

@@ -14,7 +14,7 @@ public class MaterialiDB {
 
 	public PreparedStatement ps;
 
-	public boolean insertMateriali(String nosaukums, String cena, String daudzums) throws SQLException {
+	public boolean insertMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
 		boolean insertOK = false;
 
 		String sql = "INSERT INTO materiali(nosaukums) VALUES(?)";
@@ -28,7 +28,7 @@ public class MaterialiDB {
 		return insertOK;
 	}
 
-	public boolean updateMateriali(String nosaukums,String jnosaukums, String cena, String jcena, String daudzums, String jdaudzums) throws SQLException {
+	public boolean updateMateriali(String nosaukums,String jnosaukums, int cena, int jcena, int daudzums, int jdaudzums) throws SQLException {
 		boolean updateOK = false;
 		String sql = "UPDATE materiali set nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);

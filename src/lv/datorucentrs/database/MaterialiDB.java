@@ -98,13 +98,13 @@ public class MaterialiDB {
 	}
 
 	public List<Materiali> getAllMateriali() throws SQLException {
-		Materiali materiali;;
+		Materiali materials;
 		List<Materiali> materiali = new ArrayList<Materiali>();
 		String sql = "SELECT nosaukums FROM materiali = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			materiali = new Materiali(rs.getString(1));
+			materials = new Materiali(rs.getString(1));
 		}
 		return materiali;
 	}

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import lv.datorucentrs.database.savienojums.Connect;
 import lv.datorucentrs.dati.Amats;
+import lv.datorucentrs.dati.Persona;
 
 public class PersonaDB {
 	public PreparedStatement ps;

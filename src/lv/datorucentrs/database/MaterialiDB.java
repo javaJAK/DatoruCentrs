@@ -22,7 +22,7 @@ public class MaterialiDB {
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ps.setInt(2, cena);
-		ps.setInt(3, daudzums);
+		ps.setInt(3, daudzums); // daudzums
 		ps.executeUpdate();
 		insertOK = true;
 		return insertOK;

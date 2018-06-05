@@ -43,7 +43,7 @@ public class MaterialiDB {
 		return updateOK;
 	}
 
-	public boolean deleteMateriali(String nosaukums, String cena, String daudzums) throws SQLException {
+	public boolean deleteMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
 		boolean deleteOK = false;
 		String sql = "DELETE FROM materiali WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);

@@ -1,10 +1,16 @@
 package lv.datorucentrs.dati;
 
-public class Amats {
-
+public class DarbaVeids {
 	public int ID;
 	public String nosaukums;
-	
+
+	public DarbaVeids() {
+	}
+
+	public DarbaVeids(String nosaukums) {
+		setNosaukums(nosaukums);
+	}
+
 	public int getID() {
 		return ID;
 	}
@@ -20,10 +26,5 @@ public class Amats {
 	public void setNosaukums(String nosaukums) {
 		this.nosaukums = nosaukums;
 	}
-	
-	public Amats() {}
-	
-	public Amats(String nosaukums) {	
-		setNosaukums(nosaukums);
-	}
+
 }

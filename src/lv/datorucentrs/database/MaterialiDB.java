@@ -8,6 +8,7 @@ import java.util.List;
 
 import lv.datorucentrs.database.savienojums.Connect;
 import lv.datorucentrs.dati.Amats;
+import lv.datorucentrs.dati.Materiali;
 
 public class MaterialiDB {
 
@@ -43,7 +44,7 @@ public class MaterialiDB {
 		return updateOK;
 	}
 
-	public boolean deleteMateriali(String nosaukums, String cena, String daudzums) throws SQLException {
+	public boolean deleteMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
 		boolean deleteOK = false;
 		String sql = "DELETE FROM materiali WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
@@ -55,8 +56,8 @@ public class MaterialiDB {
 		return deleteOK;
 	}
 
-	public Materiali getMateriali(String nosaukums) throws SQLException {
-		Materiali materiali = new materiali();
+	public Materiali getMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
+		Materiali materiali = new Materiali();
 		String sql = "SELECT nosaukums FROM materiali WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
@@ -83,7 +84,7 @@ public class MaterialiDB {
 		return materiali;
 	}
 
-	public int getAmatsID(String nosaukums) throws SQLException {
+	public int getMaterialiID(String nosaukums) throws SQLException {
 		int amatsID = -1;
 		String sql = "SELECT id FROM materiali WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
@@ -96,15 +97,15 @@ public class MaterialiDB {
 
 	}
 
-	public List<Amats> getAllAmati() throws SQLException {
-		Amats amats;
-		List<Amats> amati = new ArrayList<Amats>();
+	public List<Materiali> getAllMateriali() throws SQLException {
+		Materiali materiali;;
+		List<Materiali> materiali = new ArrayList<Materiali>();
 		String sql = "SELECT nosaukums FROM materiali = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			amats = new Amats(rs.getString(1));
+			materiali = new Materiali(rs.getString(1));
 		}
-		return amati;
+		return materiali;
 	}
 }

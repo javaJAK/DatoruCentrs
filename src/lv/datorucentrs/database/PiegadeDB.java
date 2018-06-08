@@ -46,17 +46,17 @@ public class PiegadeDB {
 		return deleteOK;
 	}
 
-	public Piegade getPiegade(String veids) throws SQLException {
-		Piegade piegade = new Piegade();
+	public Piegade getPiegade(String piegade) throws SQLException {
 		String sql = "SELECT veids FROM  piegade WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, piegade);
 		ResultSet rs = ps.executeQuery();
+		Piegade piegade1 = null;
 		while (rs.next()) {
-			piegade.setVeids(rs.getString(1));
+			piegade1.getVeids();
 		}
 
-		return piegade;
+		return piegade1;
 	}
 
 	public Piegade getPiegadeByID(int id) throws SQLException {
@@ -66,7 +66,7 @@ public class PiegadeDB {
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			piegade.setVeids(rs.getString(1));
+			piegade.getVeids();
 		}
 
 		return piegade;
@@ -78,6 +78,7 @@ public class PiegadeDB {
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, veids);
 		ResultSet rs = ps.executeQuery();
+		int piegadeID = 0;
 		while (rs.next()) {
 			piegadeID = rs.getInt(1);
 		}
@@ -92,10 +93,9 @@ public class PiegadeDB {
 		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			piegades =  new Piegade(rs.getString(1));
+			piegades =  (List<Piegade>) new Piegade(rs.getString(1));
 		}
 		return piegades;
 	}
 }
 
-}

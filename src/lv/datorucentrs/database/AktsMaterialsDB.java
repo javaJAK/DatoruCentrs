@@ -10,13 +10,15 @@ import java.util.List;
 import lv.datorucentrs.database.savienojums.Connect;
 import lv.datorucentrs.dati.AktsMaterials;
 import lv.datorucentrs.dati.IzsniegsanasAkts;
+import lv.datorucentrs.dati.Materiali;
 import lv.datorucentrs.dati.RemontsMaterials;
 
 public class AktsMaterialsDB {
 	public PreparedStatement ps;
 
 	// insert komanda
-	public boolean insertAktsMaterials(String nosaukums, String kVards, String kUzvards, String tVards, String tUzvards, String datortehnika, Date datums )
+	public boolean insertAktsMaterials(String nosaukums, String kVards, String kUzvards, String tVards, String tUzvards, String datortehnika, Date datums, String izsniegsanas_akts_id,
+			String remonts_materials_id, String daudzums_id)
 			throws SQLException {
 		boolean insertOK = false;
 		String sql = "INSERT INTO akti_materials(materials_id, remonts_materials_id, izsniegsanas_akts_id) VALUES(?, ?, ?);";
@@ -61,10 +63,11 @@ public class AktsMaterialsDB {
 			return deleteOK;
 	}
 	// select komandas
-		public AktsMaterials getAktsMaterials(String materials, String kVards, String kUzvards, String tVards, String tUzvards, String datortehnika, Date datums) throws SQLException {
+		public AktsMaterials getAktsMaterials(String materials, String kVards, String kUzvards, String tVards, String tUzvards, String datortehnika, Date datums, String izsniegsanas_akts_id,
+				String remonts_materials_id, String daudzums_id) throws SQLException {
 			AktsMaterials aktsMaterials = new AktsMaterials();
 			
-			IzsniegsanasAktsDB izsniegsanasAktsDB = new IzsniegsanasAktsDB();
+			IzsniegsanasAkts izsniegsanasAktsDB = new IzsniegsanasAkts();
 			RemontsMaterialsDB remontsMaterialsDB = new RemontsMaterialsDB();
 			
 			
@@ -77,8 +80,7 @@ public class AktsMaterialsDB {
 			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				aktsMaterials.setIzsniegsanasAkts(izsniegsanasAktsDB.getIzsniegsanasAktsByID(rs.getInt(1)));
-				aktsMaterials.setRemontsMaterials(remontsMaterialsDB.getRemontsMaterialsByID(rs.getInt(2)));
+				aktsMaterials.setRemontsMaterials(remontsMaterialsDB.getRemontsMaterialsByID(rs.getInt(1)));
 				aktsMaterials.setDaudzums(rs.getInt(3));
 			}
 			return aktsMaterials;
@@ -91,9 +93,9 @@ public class AktsMaterialsDB {
 					ps = Connect.connection.prepareStatement(sql);
 					ps.setInt(1, id);
 					ResultSet rs = ps.executeQuery();
-					AktsMaterials aktsmaterials;
+					AktsMaterials aktsmaterials = null;
 					while (rs.next()) {
-						aktsmaterials.setDaudzums_id(rs.getString(1));
+						aktsmaterials.setDaudzums(rs.getInt(1));
 					}
 					return aktsmaterials;
 				
@@ -101,7 +103,7 @@ public class AktsMaterialsDB {
 			
 		}
 				public AktsMaterials getAllAktsMateriali() throws SQLException {
-					AktsMaterials aktsmaterials;
+					AktsMaterials aktsmaterials = null;
 					List<RemontsMaterials> remontsmateriali = new ArrayList<>();
 					String sql = "SELECT materials_id, remonta_akts_id, daudzums FROM Remontsmaterials;";
 					
@@ -110,9 +112,9 @@ public class AktsMaterialsDB {
 					ResultSet rs = ps.executeQuery();
 					while (rs.next()) {
 						aktsmaterials = new AktsMaterials();
-						aktsmaterials.add(aktsmaterials);
 					}
 					return aktsmaterials;
+				
 				}
 
 }

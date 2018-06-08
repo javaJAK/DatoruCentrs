@@ -81,7 +81,7 @@ public class AktsMaterialsDB {
 				aktsMaterials.setRemontsMaterials(remontsMaterialsDB.getRemontsMaterialsByID(rs.getInt(2)));
 				aktsMaterials.setDaudzums(rs.getInt(3));
 			}
-			return aktsMaterials;
+			return aktsMaterials;	
 		}
 		//atrast pec id
 	

@@ -108,7 +108,7 @@ public class RemontaAktsDB {
 			String darbaApraksts, String datums) throws SQLException {
 		PersonaDB persona = new PersonaDB();
 		DatortehnikaDB datortehnika = new DatortehnikaDB();
-		DarbaVeidsDB darbaveids = new DarbaVeidsDB();
+		DarbaVeidsDB darbVeids = new DarbaVeidsDB();
 		RemontaAkts remontaAkts = new RemontaAkts();
 		String sql = "SELECT klientsID FROM remontaAkti WHERE klients = ?"; // ????
 		ps = Connect.connection.prepareStatement(sql);
@@ -133,7 +133,7 @@ public class RemontaAktsDB {
 			remontaAkts.setDarbaApraksts(rs.getString(6));
 			remontaAkts.setDatums(rs.getString(7));
 			remontaAkts.setDatortehnika(DatortehnikaDB.getDatortehnikabyID(8));
-			remontaAkts.setDarbaVeids(DarbaVeidsDB.getDarbaveidsByID(9));
+			remontaAkts.setDarbaVeids(DarbaVeidsDB.getDarbaVeidsByID(9));
 			remontaAkts.setKlients(rs.getString(10));
 			remontaAkts.setTehnikis(rs.getString(11));
 		}

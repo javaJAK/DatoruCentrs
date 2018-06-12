@@ -9,18 +9,18 @@ id SERIAL NOT NULL PRIMARY KEY,
 nosaukums VARCHAR (255));
 
 -- Tabula: AMATI
-create table if not exists amati(
-id serial not null primary key,
-nosaukums varchar(255));
+CREATE TABLE IF NOT EXISTS amati(
+id SERIAL NOT NULL PRIMARY KEY,
+nosaukums VARCHAR(255));
 
 -- Tabula: PERSONAS
 create table if not exists personas(
-id serial not null primary key ,
-vards varchar(100),
-uzvards varchar(100),
-talrunis char(8),
-amats_id integer,
-constraint amats_fk foreign key(amats_id) references amati(id));
+id SERIAL NOT NULL PRIMARY KEY,
+vards VARCHAR(255),
+uzvards VARCHAR(255),
+talrunis CHAR(8),
+amats_id INTEGER,
+CONSTRAINT amats_fk FOREIGN KEY(amats_id) REFERENCES amati(id));
 
 -- Tabula: REMONTA AKTI
 CREATE TABLE IF NOT EXISTS remonta_akti(
@@ -44,8 +44,8 @@ CONSTRAINT datortehnika_fk FOREIGN KEY(datortehnika_id) REFERENCES datortehnika(
 -- Tabula: REMONTI MATERIALI
 CREATE TABLE IF NOT EXISTS remonti_materiali(
 id SERIAL NOT NULL PRIMARY KEY,
-materials_id integer,
-remonta_akts_id integer,
-daudzums integer,
+materials_id INTEGER,
+remonta_akts_id INTEGER,
+daudzums INTEGER,
 CONSTRAINT materials_id_fk FOREIGN KEY(materials_id) REFERENCES materiali(id),
-CONSTRAINT remonta_akts_fk FOREIGN KEY(persona_id) REFERENCES personas(id));
+CONSTRAINT remonta_akts_fk FOREIGN KEY(remonta_akts_id) REFERENCES remonta_akti(id));

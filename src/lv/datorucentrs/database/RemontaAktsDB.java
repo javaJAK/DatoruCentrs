@@ -104,10 +104,10 @@ public class RemontaAktsDB {
 	// select komanda
 	// Atrast REMONATAAKTU pçc visa
 	public RemontaAkts getRemontaAkts(String klients, String tehnikis, String darbaveids, String problema,
-			Datortehnika datortehnika, String serialaisNumurs, String piezime, String transports, String darbaIlgums,
+			String datortehnika, String serialaisNumurs, String piezime, String transports, String darbaIlgums,
 			String darbaApraksts, String datums) throws SQLException {
 		PersonaDB persona = new PersonaDB();
-		DatortehnikaDB datortehnika = new DatortehnikaDB();
+		DatortehnikaDB datortehnikadb = new DatortehnikaDB();
 		DarbaVeidsDB darbVeids = new DarbaVeidsDB();
 		RemontaAkts remontaAkts = new RemontaAkts();
 		String sql = "SELECT klientsID FROM remontaAkti WHERE klients = ?"; // ????
@@ -127,13 +127,13 @@ public class RemontaAktsDB {
 		while (rs.next()) {
 			remontaAkts.setProblema(rs.getString(1));
 			remontaAkts.setSerialaisNumurs(rs.getString(2));
-			remontaAkts.setPiezime(rs.getString(3));
+			remontaAkts.setPiezimes(rs.getString(3));
 			remontaAkts.setTransports(rs.getString(4));
 			remontaAkts.setDarbaIlgums(rs.getString(5));
 			remontaAkts.setDarbaApraksts(rs.getString(6));
 			remontaAkts.setDatums(rs.getString(7));
-			remontaAkts.setDatortehnika(DatortehnikaDB.getDatortehnikabyID(8));
-			remontaAkts.setDarbaVeids(DarbaVeidsDB.getDarbaVeidsByID(9));
+			remontaAkts.setDatortehnika(datortehnika.getDatortehnikaByID(8));
+			remontaAkts.setDarbaVeids(darbaveids.getDarbaVeidsByID(9));
 			remontaAkts.setKlients(rs.getString(10));
 			remontaAkts.setTehnikis(rs.getString(11));
 		}

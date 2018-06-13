@@ -67,7 +67,7 @@ public class IzsniegsanasAktsDB {
 		int personaID = -1;
 		int remontaAktsID = -1;
 		
-		IzsniegsanasAktsDB izsniegsanasAkts = new IzsniegsanasAktsDB();
+		IzsniegsanasAktsDB izsniegsanasAktsDB = new IzsniegsanasAktsDB();
 		PersonaDB personaDB = new PersonaDB();
 		PiegadeDB piegadeDB = new PiegadeDB();
 		RemontaAktsDB remontaAktsDB = new RemontaAktsDB();

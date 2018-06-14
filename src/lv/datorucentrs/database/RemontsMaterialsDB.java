@@ -15,9 +15,7 @@ public class RemontsMaterialsDB {
 	// insert komanda
 	public boolean insertRemontsMaterials(String materials_id, String remonta_akts_id) throws SQLException {
 		boolean insertOK = false;
-		String sql = "INSERT INTO remonti_materiali(materials_id) VALUES(?)"
-				+ "INSERT INTO remonti_materiali(remonta_akts_id) VALUES(?)"
-				+ "INSERT INTO remonti_materiali(daudzums) VALUES(?)";
+		String sql = "INSERT INTO remonti_materiali(materials_id, remonta_akts_id, daudzums) VALUES(?, ?, ?)";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, materials_id);
 		ps.setString(2, remonta_akts_id);
@@ -31,8 +29,9 @@ public class RemontsMaterialsDB {
 	// update komanda
 	public boolean updateRemontsMaterials(String vMaterials_id, String jMaterials_id, String jRemonta_akts_id,
 			String vRemonta_akts_id, String jDaudzums, String vDaudzums) throws SQLException {
-		boolean updateOK = false;
-		String sql = "UPDATE RemontsMaterials SET materials_id = ? WHERE materials_id = ?";
+		boolean updateOK = false; 
+		String sql = "UPDATE remonti_materiali SET materials_id = ?, remonta_akts_id = ?, daudzumus = ?"
+				+ " WHERE materials_id = ?, remonta_akts_id, daudzums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, jMaterials_id);
 		ps.setString(2, vMaterials_id);
@@ -48,7 +47,7 @@ public class RemontsMaterialsDB {
 	public boolean deleteRemontsMaterials(String materials_id, String remonta_akts_id, String daudzums)
 			throws SQLException {
 		boolean deleteOK = false;
-		String sql = "DELETE FROM RemontsMaterials WHERE materials_id = ?; remonta_akts_id; daudzums";
+		String sql = "DELETE FROM remonti_materiali WHERE materials_id = ?, remonta_akts_id = ?, daudzums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, materials_id);
 		ps.setString(2, remonta_akts_id);
@@ -61,9 +60,9 @@ public class RemontsMaterialsDB {
 	public RemontsMaterials getRemontsMaterials(String materials_id, String remonta_akts_id, String daudzums)
 			throws SQLException {
 		RemontsMaterials remontsmaterials = new RemontsMaterials();
-		String sql = "SELECT materials_id FROM remonti_materiali WHERE materials_id = ?"
-				+ "SELECT remonta_akts_id FROM remonti_materiali WHERE remonta_akts_id = ?"
-				+ "SELECT materials_id FROM daudzums WHERE daudzums = ?";
+		String sql = "SELECT materials_id, remonta_akts_id, daudzums "
+					+ "FROM remonti_materiali rm, materiali m "
+					+ "WHERE materials_id = ?, remonta_akts_id = ?, daudzums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, materials_id);
 		ps.setString(2, remonta_akts_id);
@@ -76,12 +75,12 @@ public class RemontsMaterialsDB {
 		}
 		return remontsmaterials;
 	}
-
+	// Tâlak es nemainîju. Nav ne jausmas, kas un kâ.
 
 	// Atrast materialu pçc ID
 	public RemontsMaterials getRemontsMaterialsByID(int id) throws SQLException {
 		RemontsMaterials remontsmaterials = new RemontsMaterials();
-		String sql = "SELECT materials_id FROM remonti_materiali WHERE materials_id = ?";
+		String sql = "SELECT materials_id FROM remonti_materiali WHERE materials_id = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
@@ -89,12 +88,13 @@ public class RemontsMaterialsDB {
 			remontsmaterials.setMaterials_id(rs.getString(1));
 		}
 		return remontsmaterials;
-	}
+	} 
+	
 
-	// Atrast materiala ID pçc NOSAUKUMa
+	// Atrast materialu ID pçc NOSAUKUMa
 	public int getMaterials_id_ID(String materials_id) throws SQLException {
 		int materialsID = -1;
-		String sql = "SELECT id FROM amati WHERE nosaukums = ?;";
+		String sql = "SELECT id FROM materiali WHERE nosaukums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, materials_id);
 		ResultSet rs = ps.executeQuery();
@@ -103,11 +103,11 @@ public class RemontsMaterialsDB {
 		}
 		return materialsID;
 	}
-	// Atrast visus materialu ierakstus
+	// Atrast visus remontu_materialu ierakstus
 	public List<RemontsMaterials> getAllRemontsMateriali() throws SQLException {
 		RemontsMaterials remontsmaterials;
 		List<RemontsMaterials> remontsmateriali = new ArrayList<>();
-		String sql = "SELECT materials_id, remonta_akts_id, daudzums FROM remontsmaterials;";
+		String sql = "SELECT materials_id, remonta_akts_id, daudzums FROM remonti_materiali;";
 		
 				
 		ps = Connect.connection.prepareStatement(sql);

@@ -16,7 +16,7 @@ public class DarbaVeidsDB {
 	public boolean insertDarbaVeids(String nosaukums) throws SQLException {
 		boolean insertOK = false;
 
-		String sql = "INSERT INTO darba_veidi(nosaukums) VALUES(?)";
+		String sql = "INSERT INTO darbaVeidi(nosaukums) VALUES(?)";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
@@ -30,7 +30,7 @@ public class DarbaVeidsDB {
 	public boolean updateDarbaVeids(String nosaukums, String jNosaukums) throws SQLException {
 		boolean updateOK = false;
 
-		String sql = "UPDATE darba_veidi SET nosaukums = ? WHERE nosaukums = ?";
+		String sql = "UPDATE darbaVeidi SET nosaukums = ? WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, jNosaukums);
 		ps.setString(2, nosaukums);
@@ -44,7 +44,7 @@ public class DarbaVeidsDB {
 	public boolean updateDarbaVeids(String nosaukums) throws SQLException {
 		boolean deleteOK = false;
 
-		String sql = "DELETE FROM darba_veidi WHERE nosaukums = ?";
+		String sql = "DELETE FROM darbaVeidi WHERE nosaukums = ?";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
@@ -59,7 +59,7 @@ public class DarbaVeidsDB {
 	public DarbaVeids getDarbaVeids(String nosaukums) throws SQLException {
 		DarbaVeids darbaVeids = new DarbaVeids();
 
-		String sql = "SELECT nosaukums FROM darba_veids WHERE nosaukums = ?";
+		String sql = "SELECT nosaukums FROM darbaVeids WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 
@@ -74,7 +74,7 @@ public class DarbaVeidsDB {
 	public DarbaVeids getDarbaVeidsByID(int id) throws SQLException {
 		DarbaVeids darbaVeids = new DarbaVeids();
 
-		String sql = "SELECT nosaukums FROM darba_veidi WHERE id = ?";
+		String sql = "SELECT nosaukums FROM darbaVeidi WHERE id = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setInt(1, id);
 
@@ -89,7 +89,7 @@ public class DarbaVeidsDB {
 	public int getDarbaVeidsID(String nosaukums) throws SQLException {
 		int darbaVeidsID = -1;
 
-		String sql = "SELECT id FROM darba_veidi WHERE nosaukums = ?";
+		String sql = "SELECT id FROM darbaVeidi WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 

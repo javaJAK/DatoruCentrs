@@ -47,7 +47,7 @@ public class PiegadeDB {
 	}
 
 	public Piegade getPiegade(String piegade) throws SQLException {
-		String sql = "SELECT veids FROM  piegade WHERE nosaukums = ?";
+		String sql = "SELECT veids FROM  piegade WHERE veids = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, piegade);
 		ResultSet rs = ps.executeQuery();
@@ -89,7 +89,7 @@ public class PiegadeDB {
 	public List<Piegade> getAllVeidi() throws SQLException {
 		Piegade piegade;
 		List<Piegade> piegades = new ArrayList<Piegade>();
-		String sql = "SELECT nosaukums FROM amati = ?";
+		String sql = "SELECT nosaukums FROM piegade = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {

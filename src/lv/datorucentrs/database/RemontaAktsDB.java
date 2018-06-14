@@ -21,8 +21,8 @@ public class RemontaAktsDB {
 			String klients, String tehnikis) throws SQLException {
 		boolean insertOK = false;
 
-		String sql = "INSERT INTO RemontaAkti(problema, serialaisNumurs, piezime, "
-				+ "transports, darbaIlgums, darbaApraksts, datums, " + "datortehnika, darbaveids, klients, tehnikis)"
+		String sql = "INSERT INTO remonta_akti(problema, serialais_numurs, piezime, "
+				+ "transports, darba_ilgums, darba_apraksts, datums, datortehnika_id, darba_veids_id, klients_id, tehnikis_id)"
 				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		ps = Connect.connection.prepareStatement(sql);
@@ -49,12 +49,12 @@ public class RemontaAktsDB {
 			String klients, String tehnikis) throws SQLException {
 		boolean updateOK = false;
 
-		String sql = "UPDATE remontaAkti SET problema = ?, serialaisNumurs = ?, piezime = ?, " // UPDATE
-				+ "transports = ?, darbaIlgums = ?, darbaApraksts = ?, datums = ?, "
-				+ "datortehnika = ?, darbaveids = ?, klients = ?, tehnikis = ?"
-				+ " WHERE problema = ?, serialaisNumurs = ?, piezime = ?, " // WHERE
-				+ "transports = ?, darbaIlgums = ?, darbaApraksts = ?, datums = ?, "
-				+ "datortehnika = ?, darbaveids = ?, klients = ?, tehnikis = ?";
+		String sql = "UPDATE remonta_akti SET problema = ?, serialais_numurs = ?, piezime = ?, " // UPDATE
+				+ "transports = ?, darba_ilgums = ?, darba_apraksts = ?, datums = ?, "
+				+ "datortehnika_id = ?, darba_veids_id = ?, klients_id = ?, tehnikis_id = ?"
+				+ " WHERE problema = ?, serialais_numurs = ?, piezime = ?, " // WHERE
+				+ "transports = ?, darba_ilgums = ?, darba_apraksts = ?, datums = ?, "
+				+ "datortehnika_id = ?, darba_veids_id = ?, klients_id = ?, tehnikis_id = ?";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, problema);
@@ -91,7 +91,7 @@ public class RemontaAktsDB {
 		datortehnikaID = datortehnikaDB.getDatortehnikaID(datortehnika);
 		
 		if(klientsID != -1 && tehnikisID != -1 && darbaVeidsID != -1 && datortehnikaID != -1) {
-			String sql = "DELETE FROM remonta_akti WHERE problema = ? AND serialaisNumurs = ? AND piezime = ? AND "
+			String sql = "DELETE FROM remonta_akti WHERE problema = ? AND serialais_numurs = ? AND piezime = ? AND "
 					+ "transports = ? AND darba_ilgums = ? AND darba_apraksts = ? AND datums = ? AND "
 					+ "datortehnika_id = ? AND darba_veids_id = ? AND klients_id = ? AND tehnikis_id = ?;";
 

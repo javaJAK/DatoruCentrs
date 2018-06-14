@@ -88,7 +88,7 @@ public class IzsniegsanasAktsDB {
 
 		if(izsniedzejsID != -1 && piegadeID != -1) {
 			String sql = "DELETE FROM izsniegsanas_akti WHERE izsniedzejs_id = ? AND"
-					+ " sanemsanasAdrese = ? AND apmaksasTermins = ? AND piegade_id = ?";
+					+ " sanemsanas_adrese = ? AND apmaksas_termins = ? AND piegade_id = ?";
 			ps = Connect.connection.prepareStatement(sql);
 			ps.setInt(1, izsniedzejsID);
 			ps.setString(3, sanemsanasAdrese);
@@ -113,10 +113,10 @@ public class IzsniegsanasAktsDB {
 		personaID = personaDB.getPersonaID(iVards, iUzvards);
 		
 		if (piegadeID != -1 && personaID != -1) {
-			String sql = "SELECT sanemsanasAdrese, apmaksasTermins, piegades_veids_id, izsniedzejs_id "
-					+ "FROM piegades "
+			String sql = "SELECT sanemsanas_adrese, apmaksas_termins, piegadesid, izsniedzejs_id " 
+					+ "FROM piegades "																	  
 					+ "WHERE piegade_id = ? AND izsniedzejs id = ? "
-					+ "AND sanemsanasAdrese = ? AND apmaksasTermins = ?;";
+					+ "AND sanemsanas_adrese = ? AND apmaksas_termins = ?;";
 
 			ps = Connect.connection.prepareStatement(sql);
 			ps.setInt(1, personaID);

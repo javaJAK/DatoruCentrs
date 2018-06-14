@@ -113,8 +113,8 @@ public class IzsniegsanasAktsDB {
 		personaID = personaDB.getPersonaID(iVards, iUzvards);
 		
 		if (piegadeID != -1 && personaID != -1) {
-			String sql = "SELECT sanemsanas_adrese, apmaksas_termins, piegadesid, izsniedzejs_id " 
-					+ "FROM piegades "																	  
+			String sql = "SELECT sanemsanas_adrese, apmaksas_termins, piegade_id, izsniedzejs_id " 
+					+ "FROM piegades "													 				  
 					+ "WHERE piegade_id = ? AND izsniedzejs id = ? "
 					+ "AND sanemsanas_adrese = ? AND apmaksas_termins = ?;";
 

@@ -16,7 +16,7 @@ public class DarbaVeidsDB {
 	public boolean insertDarbaVeids(String nosaukums) throws SQLException {
 		boolean insertOK = false;
 
-		String sql = "INSERT INTO darbaVeids(nosaukums) VALUES(?)";
+		String sql = "INSERT INTO darba_veidi(nosaukums) VALUES(?)";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
@@ -30,7 +30,7 @@ public class DarbaVeidsDB {
 	public boolean updateDarbaVeids(String nosaukums, String jNosaukums) throws SQLException {
 		boolean updateOK = false;
 
-		String sql = "UPDATE darbaVeids SET nosaukums = ? WHERE nosaukums = ?";
+		String sql = "UPDATE darba_veidi SET nosaukums = ? WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, jNosaukums);
 		ps.setString(2, nosaukums);
@@ -44,7 +44,7 @@ public class DarbaVeidsDB {
 	public boolean updateDarbaVeids(String nosaukums) throws SQLException {
 		boolean deleteOK = false;
 
-		String sql = "DELETE FROM darbaVeids WHERE nosaukums = ?";
+		String sql = "DELETE FROM darba_veidi WHERE nosaukums = ?";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
@@ -59,7 +59,7 @@ public class DarbaVeidsDB {
 	public DarbaVeids getDarbaVeids(String nosaukums) throws SQLException {
 		DarbaVeids darbaVeids = new DarbaVeids();
 
-		String sql = "SELECT nosaukums FROM darbaVeids WHERE nosaukums = ?";
+		String sql = "SELECT nosaukums FROM darba_veids WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 
@@ -71,10 +71,10 @@ public class DarbaVeidsDB {
 	}
 
 	// Atrast DARBAVEIDU pçc ID
-	public DarbaVeids getAmatsByID(int id) throws SQLException {
+	public DarbaVeids getDarbaVeidsByID(int id) throws SQLException {
 		DarbaVeids darbaVeids = new DarbaVeids();
 
-		String sql = "SELECT nosaukums FROM amati WHERE id = ?";
+		String sql = "SELECT nosaukums FROM darba_veidi WHERE id = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setInt(1, id);
 
@@ -89,7 +89,7 @@ public class DarbaVeidsDB {
 	public int getDarbaVeidsID(String nosaukums) throws SQLException {
 		int darbaVeidsID = -1;
 
-		String sql = "SELECT id FROM darbaVeids WHERE nosaukums = ?";
+		String sql = "SELECT id FROM darba_veidi WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 
@@ -99,12 +99,13 @@ public class DarbaVeidsDB {
 		}
 		return darbaVeidsID;
 	}
+	
 	// Atrast visus DARBAVEIDUS
 	public List<DarbaVeids> getAllDarbaVeidi() throws SQLException{
 		DarbaVeids darbaVeids;
 		List<DarbaVeids> darbaVeidi = new ArrayList<DarbaVeids>();
 		
-		String sql = "SELECT nosaukums FROM darbaVeidi;";
+		String sql = "SELECT nosaukums FROM darba_veidi;";
 		ps = Connect.connection.prepareStatement(sql);
 		
 		ResultSet rs = ps.executeQuery();

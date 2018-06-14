@@ -5,21 +5,23 @@ public class RemontaAkts {
 	public String problema;
 	public String serialaisNumurs;
 	public String piezime;
-	public String transports;
-	public String darbaIlgums;
+	public double transports;
+	public double darbaIlgums;
 	public String darbaApraksts;
 	public String datums;
 	public Datortehnika datortehnika;
-	public DarbaVeids darbaveids;
+	public DarbaVeids darbaVeids;
 	public Persona klients, tehnikis;
+	public IzsniegsanasAkts izsniegsanasAkts;
+	public double samaksa;
 
 	public RemontaAkts() {
 
 	}
 
-	public RemontaAkts(String problema, String serialaisNumurs, String piezime, String transports, String darbaIlgums,
-			String darbaApraksts, String datums, Datortehnika datortehnika, DarbaVeids darbaveids, Persona klients,
-			Persona tehnikis) {
+	public RemontaAkts(String problema, String serialaisNumurs, String piezime, double transports, double darbaIlgums,
+			String darbaApraksts, String datums, Datortehnika datortehnika, DarbaVeids darbaVeids, Persona klients,
+			Persona tehnikis, IzsniegsanasAkts akts, double samaksa) {
 		setProblema(problema);
 		setSerialaisNumurs(serialaisNumurs);
 		setPiezimes(piezime);
@@ -28,9 +30,11 @@ public class RemontaAkts {
 		setDarbaApraksts(darbaApraksts);
 		setDatums(datums);
 		setDatortehnika(datortehnika);
-		setDarbaveids(darbaveids);
+		setDarbaVeids(darbaVeids);
 		setKlients(klients);
 		setTehnikis(tehnikis);
+		setIzsniegsanasAkts(akts);
+		setSamaksa(samaksa);
 	}
 
 	public Persona getKlients() {
@@ -81,19 +85,19 @@ public class RemontaAkts {
 		this.piezime = piezime;
 	}
 
-	public String getTransports() {
+	public double getTransports() {
 		return transports;
 	}
 
-	public void setTransports(String transports) {
+	public void setTransports(double transports) {
 		this.transports = transports;
 	}
 
-	public String getDarbaIlgums() {
+	public double getDarbaIlgums() {
 		return darbaIlgums;
 	}
 
-	public void setDarbaIlgums(String darbaIlgums) {
+	public void setDarbaIlgums(double darbaIlgums) {
 		this.darbaIlgums = darbaIlgums;
 	}
 
@@ -121,11 +125,31 @@ public class RemontaAkts {
 		this.datortehnika = datortehnika;
 	}
 
-	public DarbaVeids getDarbaveids() {
-		return darbaveids;
+	public DarbaVeids getDarbaVeids() {
+		return darbaVeids;
 	}
 
-	public void setDarbaveids(DarbaVeids darbaveids) {
-		this.darbaveids = darbaveids;
+	public void setDarbaVeids(DarbaVeids darbaveids) {
+		this.darbaVeids = darbaveids;
+	}
+
+	public void setPiezime(String piezime) {
+		this.piezime = piezime;
+	}
+
+	public IzsniegsanasAkts getIzsniegsanasAkts() {
+		return izsniegsanasAkts;
+	}
+
+	public void setIzsniegsanasAkts(IzsniegsanasAkts izsniegsanasAkts) {
+		this.izsniegsanasAkts = izsniegsanasAkts;
+	}
+
+	public double getSamaksa() {
+		return samaksa;
+	}
+
+	public void setSamaksa(double samaksa) {
+		this.samaksa = samaksa;
 	}
 }

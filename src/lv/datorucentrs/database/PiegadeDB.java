@@ -16,7 +16,7 @@ public class PiegadeDB {
 	public boolean insertPiegade(String veids) throws SQLException {
 		boolean insertOK = false;
 
-		String sql = "INSERT INTO piegade(veids) VALUES(?)";
+		String sql = "INSERT INTO piegades(veids) VALUES(?)";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, veids);
@@ -27,7 +27,7 @@ public class PiegadeDB {
 
 	public boolean updatePiegade(String veids, String jveids) throws SQLException {
 		boolean updateOK = false;
-		String sql = "UPDATE piegade set veids = ?";
+		String sql = "UPDATE piegades set veids = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, jveids);
 		ps.setString(2, veids);
@@ -38,7 +38,7 @@ public class PiegadeDB {
 
 	public boolean deletePiegade(String veids) throws SQLException {
 		boolean deleteOK = false;
-		String sql = "DELETE FROM piegade WHERE veids = ?";
+		String sql = "DELETE FROM piegades WHERE veids = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, veids);
 		ps.executeUpdate();
@@ -61,7 +61,7 @@ public class PiegadeDB {
 
 	public Piegade getPiegadeByID(int id) throws SQLException {
 		Piegade piegade = new Piegade();
-		String sql = "SELECT id FROM amati WHERE id = ?";
+		String sql = "SELECT id FROM piegades WHERE id = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
@@ -74,7 +74,7 @@ public class PiegadeDB {
 
 	public int getPiegadeID(String veids) throws SQLException {
 		int amatsID = -1;
-		String sql = "SELECT id FROM piegade WHERE veids = ?";
+		String sql = "SELECT id FROM piegades WHERE veids = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, veids);
 		ResultSet rs = ps.executeQuery();
@@ -89,7 +89,7 @@ public class PiegadeDB {
 	public List<Piegade> getAllVeidi() throws SQLException {
 		Piegade piegade;
 		List<Piegade> piegades = new ArrayList<Piegade>();
-		String sql = "SELECT nosaukums FROM piegade = ?";
+		String sql = "SELECT veids FROM piegades;";
 		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {

@@ -44,7 +44,8 @@ public class PersonaDB {
 		amatsID = amatsDB.getAmatsID(jAmats);
 		
 		if(amatsID != -1) {
-			String sql = "UPDATE personas set vards = ?, uzvards = ?, talrunis = ?, amats_id = ? WHERE vards = ? AND uzvards = ?";
+			String sql = "UPDATE personas SET vards = ?, uzvards = ?, talrunis = ?, amats_id = ? "
+						+ "WHERE vards = ?, uzvards = ?, talrunis = ?, amats_id = ?";
 			ps = Connect.connection.prepareStatement(sql);
 			ps.setString(1, jVards);
 			ps.setString(2, jUzvards);
@@ -59,12 +60,14 @@ public class PersonaDB {
 	}
 	
 	// delete komanda
-	public boolean deletePesrona(String vards, String uzvards) throws SQLException {
+	public boolean deletePesrona(String vards, String uzvards, int talrunis, int amats_id) throws SQLException {
 		boolean deleteOK = false;
-		String sql = "DELETE FROM personas WHERE vards = ? AND uzvards = ?";
+		String sql = "DELETE FROM personas WHERE vards = ?, uzvards = ?, talrunis = ?, amats_id = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, vards);
 		ps.setString(2, uzvards);
+		ps.setInt(3, talrunis);
+		ps.setInt(4, amats_id);
 		ps.executeUpdate();
 		deleteOK = true;
 		return deleteOK;
@@ -79,8 +82,9 @@ public class PersonaDB {
 		AmatsDB amatsDB = new AmatsDB();
 		
 		if (amatsID != -1) {
-			String sql = "SELECT vards, uzvards, talrunis, amats_id" + "FROM persona "
-					+ "WHERE vards = ? AND uzvards = ?;";
+			String sql = "SELECT vards, uzvards, "
+					   + "FROM personas "
+					   + "WHERE vards = ?, uzvards = ?;";
 			ps = Connect.connection.prepareStatement(sql);
 			ps.setString(1, vards);
 			ps.setString(2, uzvards);
@@ -113,7 +117,8 @@ public class PersonaDB {
 		Persona persona = new Persona();
 		AmatsDB amatsDB = new AmatsDB();
 		
-		String sql = "SELECT vards, uzvards, talrunis, amats_id FROM personas WHERE id = ?;";
+		String sql = "SELECT vards, uzvards, talrunis, amats_id FROM personas "
+				   + "WHERE vards = ?, uzvards = ?, talrunis = ?, amats_id = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();

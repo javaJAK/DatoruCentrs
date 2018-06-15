@@ -59,7 +59,7 @@ public class DarbaVeidsDB {
 	public DarbaVeids getDarbaVeids(String nosaukums) throws SQLException {
 		DarbaVeids darbaVeids = new DarbaVeids();
 
-		String sql = "SELECT nosaukums FROM darba_veids WHERE nosaukums = ?";
+		String sql = "SELECT nosaukums FROM darba_veidi WHERE nosaukums = ?";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 

@@ -46,7 +46,9 @@ public class RemontaAktsDB {
 	// update komanda
 	public boolean updateRemontaAkts(String problema, String serialaisNumurs, String piezime, String transports,
 			String darbaIlgums, String darbaApraksts, String datums, String datortehnika, String darbaveids,
-			String klients, String tehnikis) throws SQLException {
+			String klients, String tehnikis, String jProblema, String jSerialaisNumurs, String jPiezime, String jTransports,
+			String jDarbaIlgums, String jDarbaApraksts, String jDatums, String jDatortehnika, String jDarbaveids,
+			String jKlients, String jTehnikis) throws SQLException {
 		boolean updateOK = false;
 
 		String sql = "UPDATE remonta_akti SET problema = ?, serialais_numurs = ?, piezime = ?, " // UPDATE
@@ -57,17 +59,28 @@ public class RemontaAktsDB {
 				+ "datortehnika_id = ?, darba_veids_id = ?, klients_id = ?, tehnikis_id = ?";
 
 		ps = Connect.connection.prepareStatement(sql);
-		ps.setString(1, problema);
-		ps.setString(2, serialaisNumurs);
-		ps.setString(3, piezime);
-		ps.setString(4, transports);
-		ps.setString(5, darbaIlgums);
-		ps.setString(6, darbaApraksts);
-		ps.setString(7, datums);
-		ps.setString(8, datortehnika);
-		ps.setString(9, darbaveids);
-		ps.setString(10, klients);
-		ps.setString(11, tehnikis);
+		ps.setString(1, jProblema);
+		ps.setString(2, jSerialaisNumurs);
+		ps.setString(3, jPiezime);
+		ps.setString(4, jTransports);
+		ps.setString(5, jDarbaIlgums);
+		ps.setString(6, jDarbaApraksts);
+		ps.setString(7, jDatums);
+		ps.setString(8, jDatortehnika);
+		ps.setString(9, jDarbaveids);
+		ps.setString(10, jKlients);
+		ps.setString(11, jTehnikis);
+		ps.setString(12, problema);
+		ps.setString(13, serialaisNumurs);
+		ps.setString(14, piezime);
+		ps.setString(15, transports);
+		ps.setString(16, darbaIlgums);
+		ps.setString(17, darbaApraksts);
+		ps.setString(18, datums);
+		ps.setString(19, datortehnika);
+		ps.setString(20, darbaveids);
+		ps.setString(21, klients);
+		ps.setString(22, tehnikis);
 		ps.executeUpdate();
 		updateOK = true;
 

@@ -18,7 +18,7 @@ public class MaterialiDB {
 	public boolean insertMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
 		boolean insertOK = false;
 
-		String sql = "INSERT INTO materiali(nosaukums) VALUES(?)";
+		String sql = "INSERT INTO materiali(nosaukums, cena, daudzums) VALUES(?, ?, ?);";
 
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
@@ -31,7 +31,8 @@ public class MaterialiDB {
 
 	public boolean updateMateriali(String nosaukums,String jnosaukums, int cena, int jcena, int daudzums, int jdaudzums) throws SQLException {
 		boolean updateOK = false;
-		String sql = "UPDATE materiali set nosaukums = ?";
+		String sql = "UPDATE materiali SET nosaukums = ?, cena = ?, daudzums = ? "
+				   + "WHERE nosaukums = ?, cena = ?, daudzums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, jnosaukums);
 		ps.setString(2, nosaukums);
@@ -46,7 +47,7 @@ public class MaterialiDB {
 
 	public boolean deleteMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
 		boolean deleteOK = false;
-		String sql = "DELETE FROM materiali WHERE nosaukums = ?";
+		String sql = "DELETE FROM materiali WHERE nosaukums = ?, cena = ?, daudzums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ps.setInt(2, cena);
@@ -58,7 +59,8 @@ public class MaterialiDB {
 
 	public Materiali getMateriali(String nosaukums, int cena, int daudzums) throws SQLException {
 		Materiali materiali = new Materiali();
-		String sql = "SELECT nosaukums FROM materiali WHERE nosaukums = ?";
+		String sql = "SELECT nosaukums, cena, daudzums FROM materiali "
+				+ "WHERE nosaukums = ?, cena = ?, daudzums = ?;";
 		ps = Connect.connection.prepareStatement(sql);
 		ps.setString(1, nosaukums);
 		ps.setInt(2, cena);
@@ -100,7 +102,7 @@ public class MaterialiDB {
 	public List<Materiali> getAllMateriali() throws SQLException {
 		Materiali materials;
 		List<Materiali> materiali = new ArrayList<Materiali>();
-		String sql = "SELECT nosaukums FROM materiali = ?";
+		String sql = "SELECT nosaukums FROM materiali;";
 		ps = Connect.connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
